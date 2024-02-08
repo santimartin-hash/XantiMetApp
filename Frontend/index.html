@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/index.css">
+  </script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="jquery-ui-1.13.2.custom/jquery-ui.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="jquery-ui-1.13.2.custom/jquery-ui.js"></script>
+  <script>
+  ( function($) {
+            $( document ).tooltip({
+                items: "[data-tooltip]",
+                content: function() {
+                    return $(this).attr("data-tooltip");
+                }
+            });
+        })(jQuery.noConflict());
+</script>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">XantiMet</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ">
+          <li class="nav-item">
+            <a id="nombreUsuario" class="nav-link active" aria-current="page" href="#"></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Perfil</a>
+          </li>
+          <li class="nav-item">
+            <a onclick="logoutFunction()" class="nav-link">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="alert" id="errorAlert">
+    <span id="errorContent"></span>
+  </div>
+
+  <div class="contenedor">
+    <div class="cards">
+      <div class="cartitas" id="cartitas">
+
+
+
+        <div class="graficocontainer">
+          <canvas id="miGrafico"></canvas>
+        </div>
+
+      </div>
+      <div class="DragItems" ondrop="DropHandler(event)" ondragover="handleDragOver(event)">
+        <div class="DragItem" draggable="true" ondragstart="handleDragStart(event)" ondragover="handleDragOver(event)">
+            <img id="velocidadViento" src="imgs/itemsMeteorologicos/icons8-manga-catavientos-50.png" height="50px" width="50px">
+        </div>
+        <div class="DragItem" draggable="true" ondragstart="handleDragStart(event)" ondragover="handleDragOver(event)">
+            <img id="presion" src="imgs/itemsMeteorologicos/icons8-presión-100.png" height="50px" width="50px">
+        </div>
+        <div  class="DragItem" draggable="true" ondragstart="handleDragStart(event)" ondragover="handleDragOver(event)">
+            <img id="descripcion" src="https://codefrog.space/cp/wp/ts.png" height="50px" width="50px">
+        </div>
+        <div class="DragItem" draggable="true" ondragstart="handleDragStart(event)" ondragover="handleDragOver(event)">
+            <img id="DireccionViento" src="imgs/itemsMeteorologicos/direccion-del-viento.png" height="50px" width="50px">
+        </div>
+        <button class="bin-button">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 39 7"
+            class="bin-top"
+          >
+            <line stroke-width="4" stroke="white" y2="5" x2="39" y1="5"></line>
+            <line
+              stroke-width="3"
+              stroke="white"
+              y2="1.5"
+              x2="26.0357"
+              y1="1.5"
+              x1="12"
+            ></line>
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 33 39"
+            class="bin-bottom"
+          >
+            <mask fill="white" id="path-1-inside-1_8_19">
+              <path
+                d="M0 0H33V35C33 37.2091 31.2091 39 29 39H4C1.79086 39 0 37.2091 0 35V0Z"
+              ></path>
+            </mask>
+            <path
+              mask="url(#path-1-inside-1_8_19)"
+              fill="white"
+              d="M0 0H33H0ZM37 35C37 39.4183 33.4183 43 29 43H4C-0.418278 43 -4 39.4183 -4 35H4H29H37ZM4 43C-0.418278 43 -4 39.4183 -4 35V0H4V35V43ZM37 0V35C37 39.4183 33.4183 43 29 43V35V0H37Z"
+            ></path>
+            <path stroke-width="4" stroke="white" d="M12 6L12 29"></path>
+            <path stroke-width="4" stroke="white" d="M21 6V29"></path>
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 89 80"
+            class="garbage"
+          >
+            <path
+              fill="white"
+              d="M20.5 10.5L37.5 15.5L42.5 11.5L51.5 12.5L68.75 0L72 11.5L79.5 12.5H88.5L87 22L68.75 31.5L75.5066 25L86 26L87 35.5L77.5 48L70.5 49.5L80 50L77.5 71.5L63.5 58.5L53.5 68.5L65.5 70.5L45.5 73L35.5 79.5L28 67L16 63L12 51.5L0 48L16 25L22.5 17L20.5 10.5Z"
+            ></path>
+          </svg>
+        </button>
+    </div>
+    
+
+      </div>
+      <div class="mapacontainer">
+        <div id="loader" class="wrapper">
+          <div class="circle"></div>
+          <div class="circle"></div>
+          <div class="circle"></div>
+          <div class="shadow"></div>
+          <div class="shadow"></div>
+          <div class="shadow"></div>
+      </div>
+        <div id="map"></div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="bg-dark text-center fotar ">
+    <!-- Grid container -->
+    <div class="container p-1">
+
+      <!-- Section: Social media -->
+      <section class="mb-7">
+
+        <!-- Google -->
+        <a class="btn btn-primary btn-floating m-1" style="background-color: #dd4b39" href="#!" role="button"><i
+            class="fab fa-google"></i></a>
+
+        <!-- Instagram -->
+        <a class="btn btn-primary btn-floating m-1" style="background-color: #ac2bac" href="#!" role="button"><i
+            class="fab fa-instagram"></i></a>
+
+        <!-- Github -->
+        <a class="btn btn-primary btn-floating m-1" style="background-color: #333333" href="#!" role="button"><i
+            class="fab fa-github"></i></a>
+      </section>
+      <!-- Section: Social media -->
+
+    </div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div class="text-center p-2" style="background-color: rgba(0, 0, 0, 0.2)">
+      © 2020 Copyright:
+      <a class="text-dark" href="http://localhost:8080/index.html">XantiMet</a>
+    </div>
+    <!-- Copyright -->
+
+  </footer>
+  <!-- Footer -->
+  <script src="index.js"></script>
+  <script src="drag&drop.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

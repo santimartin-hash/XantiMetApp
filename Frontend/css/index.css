@@ -1,0 +1,405 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  margin: 0;
+}
+
+body {
+  background-image: url("../imgs/2590-amanecer.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: fit-content;
+  margin: 0;
+}
+
+
+.alert {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f2dede;
+  box-sizing: border-box;
+  border: 1px solid #d9534f;
+  border-radius: 0;
+  color: black;
+  text-align: center;
+  display: none;
+  transition: all 0.5s ease-in-out;
+  opacity: 0.75;
+}
+
+.alert span {
+  font-weight: bold;
+  opacity: 1;
+}
+
+#errorContent {
+  font-size: 30px;
+}
+
+.contenedor {
+  border-radius: 40px;
+  margin: 2% 5% 2% 5%;
+  background-color: rgba(32, 32, 32, 0.74);
+padding-top: 30px;
+padding-bottom: 100px;
+}
+
+.cards {
+  margin-top: 20px;
+}
+
+.carta {
+  display: none;
+  width: 250px;
+  flex-direction: column;
+  height: 120px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  margin-left: 30px;
+  padding: 15px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.cartitas {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.graficocontainer {
+  background-color: #0000003a;
+  margin-left: 60px;
+  width: 100%;
+}
+
+.carta {
+  transition: height 0.5s ease-in-out;
+  /* Adjust the duration and timing function as needed */
+}
+
+.mapacontainer {
+
+  width: 100%;
+  height: 340px;
+  background-color: rgba(0, 0, 0, 0.432);
+  margin-top: 20px;
+}
+
+.filaArriba {
+  display: inline-flex;
+}
+
+#map {
+  height: 100%;
+  width: 100%;
+}
+
+/* Asegurarse de que el color de fondo no cambie al pasar el ratón sobre los elementos del menú desplegable */
+.dropdown-menu.bg-dark .dropdown-item:hover {
+  background-color: transparent;
+}
+
+div.temperatura {
+  font-size: 30px;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+div.panel {
+  margin-right: 25px;
+}
+
+div.ciudad {
+  font-size: 21px;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding-top: 5px;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+div.temp {
+  font-size: 81px;
+  color: rgba(0, 0, 0, 0.9);
+  font-weight: 100;
+}
+
+.fotar {
+  bottom: 0;
+  width: 100%;
+}
+
+.up-panel {
+  display: inline-flex;
+}
+
+.right-panel {
+  position: absolute;
+  right: -20px;
+}
+
+.down-panel {
+  padding-top: 18%;
+  opacity: 0;
+  transition: opacity 0.1s ease-in-out;
+}
+
+.down-panel.visible {
+  opacity: 1;
+  transition: opacity 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+  transition-delay: 0.3s;
+}
+
+.cssbuttons-io-button {
+  position: absolute;
+  display: flex;
+  margin-top: 88px;
+  margin-left: 65px;
+  align-items: center;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 0.2em 0.7em 0.2em 0.6em;
+  color: white;
+  background: #ff6600;
+  background: linear-gradient(0deg, rgb(209, 114, 70) 0%, rgb(238, 117, 61)100%);
+  border: none;
+  box-shadow: 0 0.5em 1.5em -0.5em #fa500131;
+  letter-spacing: 0.05em;
+  border-radius: 20em;
+}
+
+.cssbuttons-io-button svg {
+  margin-right: 6px;
+}
+
+.cssbuttons-io-button:hover {
+  box-shadow: 0 0.7em 1.5em -0.5em #ff5f20a6;
+  transition: box-shadow 0.1s ease-in-out;
+}
+
+.cssbuttons-io-button:active {
+  box-shadow: 0 0.3em 1em -0.5em #bd5b00c2;
+}
+
+.panelizq {
+  margin-right: 10px;
+}
+
+.items {
+  display: inline-flex;
+}
+.items img{
+  float: left;
+}
+.item {
+  padding: 6px;
+}
+
+.DragItems {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f5f5f5;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #ccc;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
+.graficocontainer {
+  width: 300px;
+  margin: auto;
+}
+
+.green {
+  filter: hue-rotate(220deg);
+}
+
+.wrapper {
+  display: none;
+  width: 200px;
+  height: 60px;
+  top: 150px;
+  left: 40%;
+  position: relative;
+  z-index: 1;
+}
+
+.circle {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  border-radius: 50%;
+  background-color: #fff;
+  left: 15%;
+  transform-origin: 50%;
+  animation: circle7124 .5s alternate infinite ease;
+}
+
+@keyframes circle7124 {
+  0% {
+    top: 60px;
+    height: 5px;
+    border-radius: 50px 50px 25px 25px;
+    transform: scaleX(1.7);
+  }
+
+  40% {
+    height: 20px;
+    border-radius: 50%;
+    transform: scaleX(1);
+  }
+
+  100% {
+    top: 0%;
+  }
+}
+
+.circle:nth-child(2) {
+  left: 45%;
+  animation-delay: .2s;
+}
+
+.circle:nth-child(3) {
+  left: auto;
+  right: 15%;
+  animation-delay: .3s;
+}
+
+.shadow {
+  width: 20px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: rgba(0,0,0,0.9);
+  position: absolute;
+  top: 62px;
+  transform-origin: 50%;
+  z-index: -1;
+  left: 15%;
+  filter: blur(1px);
+  animation: shadow046 .5s alternate infinite ease;
+}
+
+@keyframes shadow046 {
+  0% {
+    transform: scaleX(1.5);
+  }
+
+  40% {
+    transform: scaleX(1);
+    opacity: .7;
+  }
+
+  100% {
+    transform: scaleX(.2);
+    opacity: .4;
+  }
+}
+
+.shadow:nth-child(4) {
+  left: 45%;
+  animation-delay: .2s
+}
+
+.shadow:nth-child(5) {
+  left: auto;
+  right: 15%;
+  animation-delay: .3s;
+}
+.DragItems div {
+  cursor: pointer;
+  display: flex;
+  flex-wrap: wrap;
+}
+.down-panel .item {
+  display: none;
+}
+
+.DragItem{
+  position: relative;
+}
+
+.especial{
+  display: block;
+  padding: 6px;
+}
+
+.bin-button {
+  margin-left: 15%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background-color: rgb(255, 95, 95);
+  cursor: pointer;
+  border: 2px solid rgb(255, 201, 201);
+  transition-duration: 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.bin-bottom {
+  width: 15px;
+  z-index: 2;
+}
+.bin-top {
+  width: 17px;
+  transform-origin: right;
+  transition-duration: 0.3s;
+  z-index: 2;
+}
+.bin-button:hover .bin-top {
+  transform: rotate(45deg);
+}
+.bin-button:hover {
+  background-color: rgb(255, 0, 0);
+}
+.garbage {
+  position: absolute;
+  width: 14px;
+  height: auto;
+  z-index: 1;
+  opacity: 0;
+  transition: all 0.3s;
+}
+.bin-button:hover .garbage {
+  animation: throw 0.4s linear;
+}
+@keyframes throw {
+  from {
+    transform: translate(-400%, -700%);
+    opacity: 0;
+  }
+  to {
+    transform: translate(0%, 0%);
+    opacity: 1;
+  }
+}
